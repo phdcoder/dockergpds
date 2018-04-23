@@ -34,7 +34,7 @@ RUN locale-gen en_US.UTF-8
 
 #user gpds
 RUN useradd -m -s /bin/zsh gpds
-RUN echo 'uesu ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
+RUN echo 'gpds ALL=(ALL) NOPASSWD:ALL' >>/etc/sudoers
 USER gpds
 WORKDIR /home/gpds
 
