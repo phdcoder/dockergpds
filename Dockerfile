@@ -21,7 +21,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh	-O ~/anaconda.sh && \
-    /bin/bash ~/anaconda.sh -b -p /home/gpds/anaconda3 && \
+    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 	
 ENV PATH /opt/conda/bin:$PATH
