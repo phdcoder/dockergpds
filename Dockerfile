@@ -85,7 +85,7 @@ RUN echo "c.InteractiveShellApp.exec_lines = ['%autoreload 2']\n" >> $HOME/.ipyt
 RUN echo "c.InteractiveShellApp.exec_lines.append('print(\"Warning: disable autoreload in ipython_config.py to improve performance.\")')\n" >> $HOME/.ipython/profile_default/ipython_config.py
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-RUN $HOME/anaconda3/bin/pip install --upgrade https://github.com/mind/wheels/releases/download/tf1.4.1-gpu-cuda91/tensorflow-1.4.1-cp36-cp36m-linux_x86_64.whl
+RUN $HOME/anaconda3/bin/pip install --upgrade https://github.com/mind/wheels/releases/download/tf1.6-gpu-cuda91/tensorflow-1.6.0-cp36-cp36m-linux_x86_64.whl
 RUN $HOME/anaconda3/bin/conda install pytorch torchvision cuda90 -c pytorch
 RUN $HOME/anaconda3/bin/pip install jupyter-tensorboard
 
