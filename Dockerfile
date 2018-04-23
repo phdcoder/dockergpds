@@ -85,7 +85,7 @@ RUN echo "c.InteractiveShellApp.exec_lines = ['%autoreload 2']\n" >> $HOME/.ipyt
 RUN echo "c.InteractiveShellApp.exec_lines.append('print(\"Warning: disable autoreload in ipython_config.py to improve performance.\")')\n" >> $HOME/.ipython/profile_default/ipython_config.py
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-RUN $HOME/anaconda3/bin/pip install --upgrade https://github.com/mind/wheels/releases/download/tf1.6-gpu-cuda91/tensorflow-1.6.0-cp36-cp36m-linux_x86_64.whl
+RUN $HOME/anaconda3/bin/pip install --upgrade https://github.com/mind/wheels/releases/download/tf1.6-gpu-cuda91-nomkl/tensorflow-1.6.0-cp36-cp36m-linux_x86_64.whl
 RUN $HOME/anaconda3/bin/conda install pytorch torchvision cuda90 -c pytorch
 RUN $HOME/anaconda3/bin/pip install jupyter-tensorboard
 
@@ -94,14 +94,3 @@ RUN git clone https://github.com/gpakosz/.tmux.git
 RUN ln -s -f .tmux/.tmux.conf
 RUN cp .tmux/.tmux.conf.local .
 
-
-#MKL
-RUN git clone https://github.com/01org/mkl-dnn.git
-WORKDIR mkl-dnn
-RUN cd scripts && ./prepare_mkl.sh && cd ..
-RUN mkdir -p build && cd build && cmake .. && make
-WORKDIR build
-RUN sudo make install
-
-WORKDIR /home/gpds
-RUN rm -r mkl-dnn
