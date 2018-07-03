@@ -17,6 +17,11 @@ RUN apt-get -f -y install \
     wget bzip2 ca-certificates \
     libglib2.0-0 libxext6 libsm6 libxrender1 \
     mercurial subversion
+# Downgrade to cudnn 7.0, since it conflicts with Tensorflow 1.7 and 1.8
+RUN apt-get update && apt-get install -y --allow-downgrades --no-install-recommends \
+    libcudnn7=7.0.4.31-1+cuda9.0 \
+    libcudnn7-dev=7.0.4.31-1+cuda9.0
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
