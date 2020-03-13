@@ -21,6 +21,14 @@ RUN apt-get -f -y install \
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Downgrade libcudnn7 to match TensorRT
+RUN apt-get install --no-install-recommends  libcudnn7=7.6.4.38-1+cuda10.1 
+
+# Install TensorRT
+RUN apt-get install -y --no-install-recommends libnvinfer6=6.0.1-1+cuda10.1 \
+libnvinfer-dev=6.0.a10.1  \
+libnvinfer-plugin6=6.0.1-1+cuda10.1
+
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/archive/Anaconda3-2020.02-Linux-x86_64.sh	-O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
@@ -46,5 +54,5 @@ RUN pip --no-cache-dir install --upgrade \
         tensorflow-gpu \
         opencv-python-headless
 	
-#start ssh
-CMD [ "sh", "/etc/init.d/ssh", "start"]
+#start ssh and terminal
+CMD /etc/init.d/ssh start ; /bin/bash
