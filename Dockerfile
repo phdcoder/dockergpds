@@ -58,3 +58,5 @@ RUN pip --no-cache-dir install --upgrade \
 	
 #start ssh and terminal
 CMD /etc/init.d/ssh start ; /bin/bash
+#expose for ssh
+EXPOSE 22
