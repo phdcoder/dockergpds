@@ -19,8 +19,6 @@ RUN apt-get -f -y install \
     libglib2.0-0 libxext6 libsm6 libxrender1 \
     mercurial subversion
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
 # Downgrade libcudnn7 to match TensorRT
 RUN apt-get install --no-install-recommends  libcudnn7=7.6.4.38-1+cuda10.1 
 
@@ -28,6 +26,8 @@ RUN apt-get install --no-install-recommends  libcudnn7=7.6.4.38-1+cuda10.1
 RUN apt-get install -y --no-install-recommends libnvinfer6=6.0.1-1+cuda10.1 \
 libnvinfer-dev=6.0.a10.1  \
 libnvinfer-plugin6=6.0.1-1+cuda10.1
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/archive/Anaconda3-2020.02-Linux-x86_64.sh	-O ~/anaconda.sh && \
