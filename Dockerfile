@@ -26,8 +26,8 @@ RUN apt-get update && apt-get install -y --allow-downgrades --allow-change-held-
 
 # Install TensorRT
 RUN apt-get install -y --no-install-recommends libnvinfer6=6.0.1-1+cuda10.1 \
-libnvinfer-dev=6.0.a10.1  \
-libnvinfer-plugin6=6.0.1-1+cuda10.1
+    libnvinfer-dev=6.0.1-1+cuda10.1 \
+    libnvinfer-plugin6=6.0.1-1+cuda10.1
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
