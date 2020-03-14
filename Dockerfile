@@ -20,7 +20,9 @@ RUN apt-get -f -y install \
     mercurial subversion
 
 # Downgrade libcudnn7 to match TensorRT
-RUN apt-get install -y --allow-downgrades --no-install-recommends  libcudnn7=7.6.4.38-1+cuda10.1 
+RUN apt-get update && apt-get install -y --allow-downgrades --allow-change-held-packages --no-install-recommends \
+    libcudnn7=7.6.4.38-1+cuda10.1  \
+    libcudnn7-dev=7.6.4.38-1+cuda10.1 
 
 # Install TensorRT
 RUN apt-get install -y --no-install-recommends libnvinfer6=6.0.1-1+cuda10.1 \
