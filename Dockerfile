@@ -10,6 +10,10 @@ RUN apt-get -f -y install \
     openssh-server \
     binutils \
     curl \
+    nano \
+    unzip\
+    unrar \
+    openvpn \
     git \
 	ffmpeg \
 	openexr \
